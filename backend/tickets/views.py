@@ -28,7 +28,9 @@ def ticket_list(request):
         if search:
             tickets = tickets.filter(title__icontains=search)   
 
-        if ordering:
+        allowed_ordering = ['title', 'priority', 'status']
+
+        if ordering and ordering.lstrip('-') in allowed_ordering:
             tickets = tickets.order_by(ordering)     
 
         serialized = TicketSerializer(tickets, many=True)
