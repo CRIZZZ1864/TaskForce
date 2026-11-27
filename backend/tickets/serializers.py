@@ -8,6 +8,7 @@ class TicketSerializer(serializers.ModelSerializer):
         
         model = Ticket
         fields = '__all__'
+        read_only_fields=['user']
 
 class RegisterSerializer(serializers.ModelSerializer):
 
@@ -16,6 +17,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         model = User  
         fields = ['username','email','password']
         extra_kwargs = {'password' : {'write_only':True}}
+        
 
     def create(self,validated_data):
 
